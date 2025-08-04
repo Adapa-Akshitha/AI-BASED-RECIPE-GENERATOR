@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriChef AI - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff4e6;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .highlight {
+      color: #f97316;
+    }
+
+    /* Hero section */
+    .hero-section {
+      height: calc(100vh - 96px); /* 100vh minus navbar height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .hero-card {
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: row;
+      padding: 3rem;
+      width: 95vw;
+      height: 100%;
+      max-width: 1200px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-left {
+      flex: 1;
+      padding-right: 2rem;
+    }
+
+    .hero-left h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-big {
+      color: #f97316;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .description {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .cta-buttons {
+      margin-top: 2rem;
+    }
+
+    .cta-buttons .btn-filled {
+      margin-right: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      background-color: #f97316;
+      color: white;
+      border: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-buttons .btn-filled:hover {
+      background-color: #e65c00;
+    }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-right img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">NutriChef AI<span class="highlight">.</span></div>
+    <div class="auth-buttons">
+      <!-- Add login/signup if needed -->
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-card">
+      <div class="hero-left">
+        <h1>Your Personal<br> <span class="highlight-big">NutriChef AI</span></h1>
+        <p class="description">
+          Discover taste adventures with our AI Recipe Generator, turning fridge finds into custom culinary creations.
+        </p>
+        <div class="cta-buttons">
+          <a href="{% url 'upload_image' %}" class="btn-filled">Upload Image</a>
+          <a href="{% url 'enter_ingredients' %}" class="btn-filled">Enter Ingredients</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="https://fmtmagazine.in/wp-content/uploads/2024/10/H1_AI-Recipe-Generators.jpg" alt="AI Chef" />
+      </div>
+    </div>
+  </section>
+</body>
+</html>

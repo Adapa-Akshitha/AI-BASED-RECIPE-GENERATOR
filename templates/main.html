@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriChef AI - Home, Login, Help</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+
+    .login-box {
+      background-color: #f0f2f5;
+      padding: 40px;
+      width: 350px;
+      border-radius: 25px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .login-box h2 {
+      color: #e67e22;
+      margin-bottom: 30px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: white;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background-color: #d35400;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .login-box button:hover,
+    .login-box .signup-btn:hover {
+      background-color: #bf4400;
+    }
+  </style>
+</head>
+
+<body class="bg-orange-50 text-gray-800 overflow-hidden">
+
+  <!-- Navbar -->
+  <header class="flex justify-between items-center p-6 bg-white shadow-md rounded-b-xl">
+    <div class="text-xl font-bold">NutriChef AI<span class="text-orange-500">.</span></div>
+  </header>
+
+  <!-- Home Section -->
+  <section id="homeSection" class="flex flex-col lg:flex-row items-center justify-between px-10 py-8 pr-6 bg-white rounded-xl shadow-xl m-4 w-screen h-screen overflow-hidden">
+    <div class="max-w-xl">
+      <h1 class="text-5xl font-bold leading-tight mb-4">Your Personal<br> <span class="text-orange-500">NutriChef AI</span></h1>
+      <p class="text-gray-600 mb-6">Discover taste adventures with our AI Recipe Generator, turning fridge finds into custom culinary creations.</p>
+      <div class="flex space-x-4">
+        <a href="#login">
+          <button class="bg-orange-500 text-white px-6 py-3 rounded-full hover:bg-orange-600">Login</button>
+        </a>
+      </div>
+    </div>
+    <div class="mt-10 lg:mt-0 lg:ml-10 flex flex-col items-center space-y-4">
+      <img src="https://s.yimg.com/ny/api/res/1.2/LsdnPI2ETjBvIWJu19jCpQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/techradar_949/db9a3633bfbd515eefc353e758ee9605" alt="NutriChef AI" class="w-full max-w-[700px] h-auto rounded-xl shadow-lg"/>
+    </div>
+  </section>
+
+  <!-- Login Section -->
+  <section id="loginSection" class="hidden w-screen h-screen flex items-center justify-center bg-cover bg-center overflow-hidden pr-6" style="background-image: url({% static 'css/images/img3.jpg' %});">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form method="POST" action="{% url 'auth' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Enter username" required>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <button type="submit">Login</button>
+        <a href="#signup"><button type="button" class="signup-btn">Sign Up</button></a>
+      </form>
+      {% if error %}
+        <p class="text-red-500 mt-2">{{ error }}</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signupSection" class="hidden w-screen h-screen flex items-center justify-center bg-cover bg-center overflow-hidden pr-6" style="background-image: url('https://thumbs.dreamstime.com/b/salad-tomatoes-greens-dressing-oil-feta-cheese-blue-plate-white-wooden-background-top-view-banner-website-52717635.jpg');">
+    <div class="login-box">
+      <h2>Sign Up</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="password" placeholder="Create Password" required>
+        <button type="submit">Register</button>
+        <a href="#login"><button type="button" class="signup-btn">Back to Login</button></a>
+      </form>
+    </div>
+  </section>
+
+  <!-- Script for Section Routing -->
+  <script>
+    function showSection() {
+      const hash = window.location.hash || "#home";
+      const sections = {
+        "#home": "homeSection",
+        "#login": "loginSection",
+        "#signup": "signupSection"
+      };
+
+      for (const id of Object.values(sections)) {
+        document.getElementById(id).classList.add("hidden");
+      }
+
+      const active = sections[hash] || "homeSection";
+      document.getElementById(active).classList.remove("hidden");
+    }
+
+    window.addEventListener("hashchange", showSection);
+    window.addEventListener("load", showSection);
+  </script>
+
+</body>
+</html>

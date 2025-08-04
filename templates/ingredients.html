@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generate Recipe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background-image: url("{% static 'css/images/img2.jpg' %}");
+    background-size: cover;
+    background-attachment: fixed; /* ✨ Prevent zoom on refresh */
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+    padding: 1.5rem;
+    min-height: 100vh;
+  }
+
+  .glass-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+</head>
+<body>
+
+  <h1 class="text-3xl font-bold mb-4 text-center text-white drop-shadow-lg">Enter Ingredients</h1>
+
+  <form id="ingredientForm" method="POST" class="max-w-xl mx-auto glass-box">
+    {% csrf_token %}
+    <textarea name="ingredients" rows="6" placeholder="e.g., tomato, onion, chicken" class="w-full p-3 rounded-md border border-gray-300"></textarea>
+    <button type="submit" class="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded w-full">
+      🍲 Get Recipe
+    </button>
+  </form>
+
+  {% if recipe %}
+    <div class="mt-8 max-w-xl mx-auto glass-box">
+      <h2 class="text-2xl font-semibold mb-3">🍳 Your AI Recipe:</h2>
+      <pre class="whitespace-pre-wrap text-gray-700">{{ recipe }}</pre>
+    </div>
+  {% endif %}
+
+</body>
+</html>
